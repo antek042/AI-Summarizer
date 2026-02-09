@@ -19,9 +19,9 @@ def summarize():
         
         text = data["text"]
         if len(text) < 50:
-                return jsonify({'error': 'Tekst za krótki (minimum 50 znaków)'}), 400
+                return jsonify({'error': 'Text to short (min 50 tokens)'}), 400
         if len(text) > 50000:
-                return jsonify({'error': 'Tekst za długi (maksimum 50000 znaków)'}), 413
+                return jsonify({'error': 'Text to large (max 50000 tokens)'}), 413
         
         model = data.get("model", "tngtech/deepseek-r1t2-chimera:free")
 
@@ -32,4 +32,4 @@ def summarize():
                 return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-        app.run(debug=True)
+        app.run()

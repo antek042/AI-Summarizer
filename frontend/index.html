@@ -15,38 +15,38 @@
     <main class="app">
         <header class="header">
             <div class="badge">AI Summarizer</div>
-            <h1>Podsumuj tekst według zasady Pareto 20/80</h1>
-            <p class="subtitle">Wklej treść, wybierz model z OpenRouter i kliknij podsumuj.</p>
+            <h1>Summarize text using the Pareto 20/80 principle</h1>
+            <p class="subtitle">Paste content, choose a model from OpenRouter and click summarize.</p>
         </header>
 
         <section class="card">
-            <label class="label" for="textInput">Tekst do podsumowania</label>
-            <textarea id="textInput" class="textarea" placeholder="Wklej tutaj tekst..." rows="6"></textarea>
+            <label class="label" for="textInput">Text to summarize</label>
+            <textarea id="textInput" class="textarea" placeholder="Paste text here..." rows="6"></textarea>
             <div class="meta">
-                <span id="charCount">0 znaków</span>
-                <span class="limit">Min 50 / Max 50 000</span>
+                <span id="charCount">0 characters</span>
+                <span class="limit">Min 50 / Max 50,000</span>
             </div>
 
             <div class="row">
                 <div class="field">
-                    <label class="label" for="modelInput">Model OpenRouter</label>
+                    <label class="label" for="modelInput">OpenRouter Model</label>
                     <input id="modelInput" class="input" type="text" placeholder="google/gemini-flash-1.5" />
                 </div>
-                <button id="submitBtn" class="button" type="button">Podsumuj</button>
+                <button id="submitBtn" class="button" type="button">Summarize</button>
             </div>
 
             <div id="loader" class="loader" aria-live="polite" hidden>
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
-                <span class="loader-text">Generuję podsumowanie...</span>
+                <span class="loader-text">Generating summary...</span>
             </div>
         </section>
 
         <section id="resultContainer" class="card result" hidden>
             <div class="result-header">
-                <h2>Podsumowanie</h2>
-                <button id="copyBtn" class="button ghost">Kopiuj</button>
+                <h2>Summary</h2>
+                <button id="copyBtn" class="button ghost">Copy</button>
             </div>
             <div id="summaryContent" class="summary"></div>
         </section>

@@ -1,6 +1,6 @@
 const API_URL = '/api';
 
-// Elementy DOM
+// DOM elements
 const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
 const submitBtn = document.getElementById('submitBtn');
@@ -10,19 +10,19 @@ const loader = document.getElementById('loader');
 const modelInput = document.getElementById('modelInput');
 const copyBtn = document.getElementById('copyBtn');
 
-// Ustaw domyślny model
+// Set default model
 modelInput.value = 'google/gemini-flash-1.5';
 
-// Automatyczne dopasowanie wysokości textarea
+// Auto-resize textarea
 const autoResize = () => {
     textInput.style.height = 'auto';
     textInput.style.height = `${textInput.scrollHeight}px`;
 };
 
-// Licznik znaków i walidacja wizualna
+// Character counter and visual validation
 const updateCount = () => {
     const length = textInput.value.length;
-    charCount.textContent = `${length} znaków`;
+    charCount.textContent = `${length} characters`;
 
     if (length < 50 || length > 50000) {
         charCount.style.color = '#ef4444';
@@ -36,39 +36,39 @@ textInput.addEventListener('input', () => {
     updateCount();
 });
 
-// Kopiowanie podsumowania
+// Copy summary to clipboard
 copyBtn.addEventListener('click', async () => {
     const text = summaryContent.innerText.trim();
     if (!text) return;
 
     try {
         await navigator.clipboard.writeText(text);
-        copyBtn.textContent = 'Skopiowano';
+        copyBtn.textContent = 'Copied';
         setTimeout(() => {
-            copyBtn.textContent = 'Kopiuj';
+            copyBtn.textContent = 'Copy';
         }, 1500);
     } catch (error) {
-        alert('Nie udało się skopiować');
+        alert('Failed to copy');
     }
 });
 
-// Główna funkcja podsumowania
+// Main summarize function
 async function summarizeText() {
     const text = textInput.value.trim();
     const model = modelInput.value.trim() || 'google/gemini-flash-1.5';
 
-    // Walidacja
+    // Validation
     if (text.length < 50) {
-        alert('Tekst musi mieć minimum 50 znaków');
+        alert('Text must be at least 50 characters');
         return;
     }
 
     if (text.length > 50000) {
-        alert('Tekst może mieć maksymalnie 50000 znaków');
+        alert('Text cannot exceed 50,000 characters');
         return;
     }
 
-    // Loader
+    // Show loader
     loader.hidden = false;
     submitBtn.disabled = true;
     resultContainer.hidden = true;
@@ -83,7 +83,7 @@ async function summarizeText() {
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.error || 'Wystąpił błąd');
+            throw new Error(data.error || 'An error occurred');
         }
 
         const markdown = data.summary || '';
@@ -91,7 +91,7 @@ async function summarizeText() {
         resultContainer.hidden = false;
         resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
-        alert(`Błąd: ${error.message}`);
+        alert(`Error: ${error.message}`);
     } finally {
         loader.hidden = true;
         submitBtn.disabled = false;
@@ -103,7 +103,7 @@ submitBtn.addEventListener('click', (event) => {
     summarizeText();
 });
 
-// Inicjalizacja
+// Initialize
 updateCount();
 autoResize();
 loader.hidden = true;
