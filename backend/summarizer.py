@@ -8,8 +8,7 @@ class SummarizerService:
         def __init__(self):
                 api_key = os.getenv('OPENROUTER_API_KEY')
                 if api_key is None:
-                        print("No API key readed")
-                        exit(500)
+                        raise ValueError("OPENROUTER_API_KEY nie znaleziony w pliku .env")
                 
                 self.client = OpenAI(
                         base_url="https://openrouter.ai/api/v1",
