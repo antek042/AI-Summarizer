@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, send_from_directory
 from dotenv import load_dotenv
 from summarizer import SummarizerService
+
 load_dotenv()
-app = Flask(__name__, static_folder="../frontend")
+app = Flask(__name__, static_folder="../frontend", static_url_path="")
 summarizer = SummarizerService()
 
 @app.route("/")

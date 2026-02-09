@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Summarizer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+
+    <main class="app">
+        <header class="header">
+            <div class="badge">AI Summarizer</div>
+            <h1>Podsumuj tekst według zasady Pareto 20/80</h1>
+            <p class="subtitle">Wklej treść, wybierz model z OpenRouter i kliknij podsumuj.</p>
+        </header>
+
+        <section class="card">
+            <label class="label" for="textInput">Tekst do podsumowania</label>
+            <textarea id="textInput" class="textarea" placeholder="Wklej tutaj tekst..." rows="6"></textarea>
+            <div class="meta">
+                <span id="charCount">0 znaków</span>
+                <span class="limit">Min 50 / Max 50 000</span>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label class="label" for="modelInput">Model OpenRouter</label>
+                    <input id="modelInput" class="input" type="text" placeholder="google/gemini-flash-1.5" />
+                </div>
+                <button id="submitBtn" class="button" type="button">Podsumuj</button>
+            </div>
+
+            <div id="loader" class="loader" aria-live="polite" hidden>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="loader-text">Generuję podsumowanie...</span>
+            </div>
+        </section>
+
+        <section id="resultContainer" class="card result" hidden>
+            <div class="result-header">
+                <h2>Podsumowanie</h2>
+                <button id="copyBtn" class="button ghost">Kopiuj</button>
+            </div>
+            <div id="summaryContent" class="summary"></div>
+        </section>
+
+        <footer class="footer">
+            <span>Made for MVP • Flask + Vanilla JS</span>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
